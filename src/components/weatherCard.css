@@ -1,0 +1,16 @@
+.day-tittle {
+    font-size: large;
+    font-weight: bold;
+}
+
+.day-desc {
+    font-style: italic;
+    color: dimgray;
+    font-size: medium;
+}
+
+.day-temp {
+    font-size: xx-large;
+    font-weight: bolder;
+    color: crimson;
+}

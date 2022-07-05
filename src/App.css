@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+.app-tittle{
+  font-size:xx-large;
+  border: #282c34;
+  border-style: dashed;
+  /* width: 500px; */
+  height: 100px;
+
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
