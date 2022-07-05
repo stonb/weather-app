@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Divider, Row, Select } from 'antd';
 import DayCard from './weatherCard';
-import '../App.css';
 import 'antd/dist/antd.css';
+import './weather.css';
 import axios from 'axios';
 
 const { Option } = Select;
-//TODO Put Api key as ENV Var
+//TODO Set Api key as ENV variable
 const APIKEY = "APIKEY"; //API key from OpenWeather
 var cityChoice = "newyork";
 var apiURL = "";
@@ -143,21 +143,32 @@ const Weather = () => {
 
     const handleChange = (value) => {
         cityChoice = value;
-        apiCall();
+        if (APIKEY !== "APIKEY")
+        {
+            apiCall();
+        }
+        
     };
 
     const apiCall = () => {
         if(cities[cityChoice])
         {
-            // Please update the API KEY at the top of the file
-            apiURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cities[cityChoice].lat + "&lon=" + cities[cityChoice].lon + "&appid=" + APIKEY + "&units=metric";
+            if (APIKEY !== "APIKEY")
+            {
+                // Please update the API KEY at the top of the file
+                apiURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cities[cityChoice].lat + "&lon=" + cities[cityChoice].lon + "&appid=" + APIKEY + "&units=metric";
 
-            axios.get(apiURL, {responseType: "json"})
-            .then(res => {
-                const weather = res.data;
-                weekWeather = weather.list;
-                setDaysWeather(weekWeather);
-            })
+                axios.get(apiURL, {responseType: "json"})
+                .then(res => {
+                    const weather = res.data;
+                    weekWeather = weather.list;
+                    setDaysWeather(weekWeather);
+                })
+            }
+            else
+            {
+                alert("PLEASE CHANGE API KEY!")
+            }
         }
         else{
             console.log("City does not exist");
@@ -166,7 +177,7 @@ const Weather = () => {
 
     return (
         <>
-        <div className='app-tittle' >5 Day Weather</div>
+        <div className='weather-tittle' >5 Day Weather</div>
         <Divider>Select a city</Divider>
         
         {/* TODO get list of cities from array */}
